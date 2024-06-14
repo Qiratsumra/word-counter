@@ -1,22 +1,66 @@
-#! /usr/bin/env node
+#! /usr/bin/env node 
 
 import inquirer from "inquirer";
 
-console.log(`\t Welcome to CLI based word counter\t`);
+import chalk from "chalk";
+
+console.log(chalk.bgMagentaBright.whiteBright("\n\n Welcome to the Word counter \n\n"));
 
 
-const answer:{
-    Sentence:string,
-} =await inquirer.prompt(
-    [
-        {
-            name:"Sentence",
-            type:"input",
-            message:"Enter the sentence or paragraph do you want to count:"
-        }
-    ]
-);
-const words = answer.Sentence.trim().split(" ");
-console.log(words);
+let condition = true ;
 
-console.log(`Your total words in sentence or paragraph is :${words.length}`);
+while (condition) {
+    let answer:{
+        paragraph:string
+    } = await inquirer.prompt(
+        [
+            {
+                name:"paragraph",
+                type:"input",
+                message:"Enter your sentence or paragraph:"
+            }
+        ]
+    );
+
+    let words =  answer.paragraph.trim().split("");
+
+    console.log(words);
+
+    console.log(chalk.bgBlue.whiteBright(`\n Total sentence or paragraph is: ${words.length}`));
+
+    let anotherAnwser= await inquirer.prompt(
+        [
+            {
+                name:"anotherQuestion",
+                type:"confirm",
+                message:"Do you want to count more sentence or paragraph:",
+                default:false
+
+            }
+        ]
+    );
+
+    if (anotherAnwser.anotherQuestion === true) {
+        let AnotherAnswer :{
+            anotherParagraph:string
+        } = await inquirer.prompt(
+            [
+                {
+                    name:"anotherParagraph",
+                    type:"input",
+                    message:"Enter your sentence or paragraph:"
+                }
+            ]
+        );
+
+        let anotherWord = AnotherAnswer.anotherParagraph.trim().split("");
+
+        console.log(anotherWord);
+        console.log(chalk.bgBlue.whiteBright(`\n Total sentence or paragraph is: ${anotherWord.length}`));
+ condition = false
+    }else{
+        console.log(chalk.bgMagentaBright.whiteBright("Thanks for using!"));
+        condition = false
+    }
+
+}

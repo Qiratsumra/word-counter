@@ -1,6 +1,6 @@
 {
-  "name": "qs-word-counter",
-  "version": "1.0.0",
+  "name": "word-counter-qirat-saeed",
+  "version": "1.0.2",
   "description": "This is a cli-based word counter ",
   "main": "main.js",
   "type": "module",
@@ -11,6 +11,7 @@
   "author": "QIRAT SAEED",
   "license": "ISC",
   "dependencies": {
+    "chalk": "^5.3.0",
     "inquirer": "^9.2.19"
   },
   "devDependencies": {
